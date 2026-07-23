@@ -1,4 +1,6 @@
 CollisionShape2D
+Area2D
+RigidBody2D
 StaticBody2D
 Timer
 Camera2D
