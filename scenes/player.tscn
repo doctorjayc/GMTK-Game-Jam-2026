@@ -87,6 +87,7 @@ shape = SubResource("RectangleShape2D_y4r1p")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=720065745]
 process_priority = 1
+zoom = Vector2(4, 4)
 
 [node name="dash timer" type="Timer" parent="." unique_id=1161392597]
 one_shot = true

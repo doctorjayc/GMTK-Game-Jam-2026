@@ -5,3 +5,5 @@ res://scripts/shell.gd
 res://scenes/level.tscn
 res://scenes/interactable.tscn
 res://scripts/interactable.gd
+res://scenes/text_canvas.tscn
+res://scripts/text_canvas.gd
