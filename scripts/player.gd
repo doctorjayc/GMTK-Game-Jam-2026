@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var normal_speed = 50
 @export var gravity:float = 6
-
+#FLY GOES INFINITELY IP I WILL FIX IT
 # Note: Moved jump and fall states as they would overwrite other states, added still state as well for when the snail is not jumping or falling
 enum state{fly, roll, normal_walk}
 enum height_state{jump, fall, still}
@@ -25,13 +25,16 @@ var shell_instance: Node
 # Loads shell
 # IMPORTANT: If the shell path is changed this needs to be updated
 @onready var shell_object = preload("res://scenes/shell.tscn")
-
+func _ready() -> void:
+	pass
 func _physics_process(_delta: float) -> void:
 	add_gravity()
+	print("yessss")
 	dir = Input.get_axis('left','right')
 	if dir != 0:
 		last_dir = dir
-	
+	#if Input.is_action_just_pressed("interact_e"):
+		#deletable = true
 	# Flips the sprite based on the current direction
 	if dir < 0:
 		sprite.flip_h = true
@@ -54,14 +57,20 @@ func movement():
 		state.fly:
 			velocity.x = dir * SPEED
 			SPEED = flying_speed
+			# FLYING IS NOT DONE FLYING IS NOT DONE  I WILL FINISH IT WHEN I HAVE THE TIME
 			# Note: Not being able to jump here is expected for now, since you should fly eventually
-			
+			velocity.y = lerpf(0,-100,0.2)
+			var timer = get_tree().create_timer(1)
+			await  timer.timeout
+			change_height_state(height_state.fall)
+			velocity.y = 0
 			# Removes the shell and enters normal state when interacting next to a shell
 			if Input.is_action_just_pressed('interact'):
 				if deletable:
 					remove_shell()
 					change_state(state.normal_walk)
-		
+					print('deleteble')
+					
 		# Note: I have not touched this yet, it is still unfinished
 		state.roll:
 			print("'rollllld")
@@ -105,8 +114,8 @@ func change_state(state_change):
 			spawn_shell()
 			flyable = false
 			sprite.play("no_shell")
-			# Double jump effect
-			velocity.y = JUMP_VELOCITY * 1.5
+			# Double jump effect . I am removing this for the flying
+			#velocity.y = JUMP_VELOCITY * 1.5
 		
 		state.roll:
 			current_state = state.roll
@@ -134,19 +143,25 @@ func spawn_shell():
 	shell_spawned = true
 	shell_instance = shell_object.instantiate()
 	get_tree().current_scene.add_child(shell_instance)
-	if dir < 0:
-		shell_instance.set_position(Vector2((position.x + 10), (position.y)))
-	elif dir > 0:
-		shell_instance.set_position(Vector2((position.x - 10), (position.y)))
+	#Im changing this to make the shell spawn at the same position of the player
+	#if dir < 0:
+		#shell_instance.set_position(Vector2((position.x + 10), (position.y)))
+	#elif dir > 0:
+		#shell_instance.set_position(Vector2((position.x - 10), (position.y)))
+	shell_instance.global_position = self.global_position
 
 func remove_shell():
 	shell_spawned = false
 	shell_instance.queue_free()
-
+	print('remove')
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("shell"):
 		deletable = true
+		print("testd")
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("shell"):
 		deletable = false
+		
+func add_screen_shake(amount:float):
+	$Camera2D.set_screen_shake(amount)

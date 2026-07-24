@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c0nl0wtthiilr"]
+
+[ext_resource type="Script" uid="uid://5ov4hdobpmj8" path="res://node_2d.gd" id="1_n4tde"]
+[ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="2_vxja4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(18, 5)
+
+[node name="Button" type="Node2D" unique_id=1594361557]
+script = ExtResource("1_n4tde")
+
+[node name="Snailset1_4" type="Sprite2D" parent="." unique_id=1543645444]
+visible = false
+texture = ExtResource("2_vxja4")
+region_enabled = true
+region_rect = Rect2(128, 8, 16, 8)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1651428702]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1777767690]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Snailset1_5" type="Sprite2D" parent="." unique_id=81543303]
+position = Vector2(0, 1)
+texture = ExtResource("2_vxja4")
+region_enabled = true
+region_rect = Rect2(128, 24, 16, 8)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

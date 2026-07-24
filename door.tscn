@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cu0bnedoscntm"]
+
+[ext_resource type="Script" uid="uid://485xat48vv7j" path="res://door.gd" id="1_v6xrn"]
+[ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="2_0phs7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50cdl"]
+size = Vector2(31, 9)
+
+[node name="door" type="StaticBody2D" unique_id=548825401 groups=["door"]]
+script = ExtResource("1_v6xrn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1101260506]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_50cdl")
+
+[node name="Snailset1_4" type="Sprite2D" parent="." unique_id=1580921048]
+texture = ExtResource("2_0phs7")
+region_enabled = true
+region_rect = Rect2(144, 32, 32, 16)
+
+[node name="Snailset1_5" type="Sprite2D" parent="." unique_id=729872417]
+visible = false
+texture = ExtResource("2_0phs7")
+region_enabled = true
+region_rect = Rect2(144, 48, 32, 16)

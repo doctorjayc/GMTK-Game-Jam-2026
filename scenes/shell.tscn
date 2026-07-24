@@ -3,10 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://dgoj2q200wrsm" path="res://assets/snailunattatched.png" id="1_bo4bk"]
 [ext_resource type="Script" uid="uid://b4qr4yc8ordkw" path="res://scripts/shell.gd" id="1_sb42f"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sb42f"]
+friction = 1000.0
+rough = true
+bounce = 0.22
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3kr6"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sb42f"]
+radius = 7.0
+
 [node name="shell" type="RigidBody2D" unique_id=1250009753 groups=["shell"]]
+collision_layer = 2
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_sb42f")
 script = ExtResource("1_sb42f")
 
 [node name="Snailunattatched" type="Sprite2D" parent="." unique_id=2041415011]
@@ -16,3 +27,11 @@ texture = ExtResource("1_bo4bk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1081039956]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_y3kr6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1835834643]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1331848804]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_sb42f")
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

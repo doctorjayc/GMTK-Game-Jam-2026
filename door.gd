@@ -1,0 +1,22 @@
+extends StaticBody2D
+
+@export var door_interactable_value:int
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+func open():
+	$CollisionShape2D.disabled = true
+	$Snailset1_4.hide()
+	$Snailset1_5.show()
+	var player = get_tree().get_first_node_in_group('player')
+	player.add_screen_shake(9)
+func close():
+	$CollisionShape2D.disabled = false
+	$Snailset1_5.hide()
+	$Snailset1_4.show()
+	print('close')

@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="3_w8frs"]
 [ext_resource type="Texture2D" uid="uid://dqciwk07tsuy0" path="res://assets/snailset1.3.png" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://lever.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://bokgnxv67gdia" path="res://node_2d.tscn" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://door.tscn" id="7_klq6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgho"]
 size = Vector2(518, 136)
@@ -178,6 +181,7 @@ sources/1 = SubResource("TileSetAtlasSource_ppgk2")
 [node name="Level" type="Node2D" unique_id=1438791529]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1836542100]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1903382000]
 position = Vector2(249, 58)
@@ -186,12 +190,14 @@ shape = SubResource("RectangleShape2D_5xgho")
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1007161067]
 position = Vector2(369.00003, 25.000008)
 rotation = -1.5952309
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=388132511]
 position = Vector2(249, 58)
 shape = SubResource("RectangleShape2D_5xgho")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=917238692]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=878744971]
 position = Vector2(339, -35.999985)
@@ -220,3 +226,19 @@ offset_bottom = 8.0
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAEAP//AQABAAAAAAAFAP//AQABAAAAAAAGAP//AQABAAAAAAAHAP//AQACAAAAAAADAP//AQABAAAAAAACAP//AQABAAAAAAABAP//AQAAAAAAAAAQAP//AQAGAAUAAAAPAP//AQAFAAUAAAARAP//AQAHAAUAAAAKAP//AQABAAUAAAALAP//AQABAAUAAAAHAAAAAQACAAEAAAAGAAAAAQABAAEAAAAFAAAAAQABAAEAAAAEAAAAAQABAAEAAAADAAAAAQABAAEAAAACAAAAAQABAAEAAAABAAAAAQAAAAEAAAABAAEAAQAAAAEAAAACAAEAAQABAAEAAAADAAEAAQABAAEAAAAEAAEAAQABAAEAAAAFAAEAAQABAAEAAAAGAAEAAQABAAEAAAAHAAEAAQACAAEAAAAHAAIAAQACAAEAAAAGAAIAAQABAAEAAAAFAAIAAQABAAEAAAAEAAIAAQABAAEAAAADAAIAAQABAAEAAAACAAIAAQABAAEAAAABAAIAAQAAAAEAAAAPAAAAAQAFAAYAAAAQAAAAAQAGAAYAAAARAAAAAQAHAAYAAAARAAEAAQAHAAYAAAAQAAEAAQAGAAYAAAAQAAIAAQAGAAYAAAAPAAEAAQAFAAYAAAAPAAIAAQAFAAYAAAARAAIAAQAHAAYAAAAJAP//AQAAAAUAAAAJAAAAAQAAAAcAAAAMAAAAAQACAAcAAAAMAP//AQACAAUAAAALAAAAAQABAAcAAAAKAAAAAQABAAcAAAAPAAMAAQAFAAYAAAARAAMAAQAHAAYAAAAQAAMAAQAGAAYAAAAHAAMAAQACAAEAAAABAAMAAQAAAAEAAAACAAMAAQABAAEAAAADAAMAAQABAAEAAAAEAAMAAQABAAEAAAAFAAMAAQABAAEAAAAGAAMAAQABAAEAAAA=")
 tile_set = SubResource("TileSet_2r41h")
+
+[node name="Snailset1_3" type="Sprite2D" parent="." unique_id=1899479585]
+position = Vector2(395, 656)
+texture = ExtResource("4_mx8sn")
+
+[node name="Lever" parent="." unique_id=1558045770 instance=ExtResource("5_ppgk2")]
+position = Vector2(106, -27)
+interactablevalue = 1
+
+[node name="Button" parent="." unique_id=1594361557 instance=ExtResource("6_2r41h")]
+position = Vector2(59, -29)
+interactablevalue = 1
+
+[node name="door" parent="." unique_id=548825401 instance=ExtResource("7_klq6b")]
+position = Vector2(11, -62)
+door_interactable_value = 1
