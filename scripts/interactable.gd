@@ -5,8 +5,8 @@ var interactable = false
 @export var displayed_text: Array[String]
 @export var canvas: Node
 
-func _on_body_entered(area):
-	if area.is_in_group("player"):
+func _on_body_entered(body):
+	if body.is_in_group("player"):
 		interactable = true
 
 func _on_body_exited(body):

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://brlnpwbxu7t3j" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bpojnq0xbawgf" path="res://assets/sillysnail-Sheet.png" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://c4xdkh80fym1r" path="res://assets/snail_no_shell.png" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -28,10 +27,6 @@ region = Rect2(80, 0, 20, 16)
 atlas = ExtResource("2_g2els")
 region = Rect2(100, 0, 20, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
-atlas = ExtResource("3_qhqgy")
-region = Rect2(0, 0, 21, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ur7pv"]
 animations = [{
 "frames": [{
@@ -56,30 +51,22 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ur7pv")
-}],
-"loop": true,
-"name": &"no_shell",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4r1p"]
 size = Vector2(20, 13)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(31, 23)
-
 [node name="Player" type="CharacterBody2D" unique_id=813911275 groups=["player"]]
 script = ExtResource("1_4flbx")
+normal_speed = null
+gravity = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1912716383]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ur7pv")
-animation = &"no_shell"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.13731103
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=169457598]
 position = Vector2(0, -6.5)
@@ -90,13 +77,3 @@ process_priority = 1
 
 [node name="dash timer" type="Timer" parent="." unique_id=1161392597]
 one_shot = true
-
-[node name="Area2D" type="Area2D" parent="." unique_id=666380806]
-
-[node name="InteractArea" type="CollisionShape2D" parent="Area2D" unique_id=175434054]
-position = Vector2(-0.5, -6.5)
-shape = SubResource("RectangleShape2D_g2els")
-debug_color = Color(0.8518925, 0.23644134, 0.7156284, 0.41960785)
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
