@@ -1,3 +1,12 @@
-res://player.gd
+res://player.tscn
 res://level.tscn
-res://shell.tscn
+res://scenes/text_canvas.tscn
+res://scripts/text_canvas.gd
+res://scenes/level.tscn
+res://scenes/test_interactable.tscn
+res://scenes/test_interactable.gd
+res://scripts/test_interactable.gd
+res://scripts/player.gd
+res://scenes/player.tscn
+res://scenes/interactable.tscn
+res://scripts/interactable.gd

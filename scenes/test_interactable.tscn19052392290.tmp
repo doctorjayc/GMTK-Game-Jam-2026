@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bv2i4ax75ggk4"]
+
+[ext_resource type="Script" uid="uid://e1a8uv04cmkh" path="res://scripts/test_interactable.gd" id="1_vyifp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vyifp"]
+
+[node name="test_interactable" type="Area2D" unique_id=780565488]
+script = ExtResource("1_vyifp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1507041319]
+shape = SubResource("RectangleShape2D_vyifp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

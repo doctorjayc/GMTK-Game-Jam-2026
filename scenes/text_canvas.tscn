@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://begci8e8ilt50"]
+
+[ext_resource type="Script" uid="uid://d1516djrk0h7f" path="res://scripts/text_canvas.gd" id="1_3inqg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3inqg"]
+bg_color = Color(0.039215688, 0.023529412, 0.007843138, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.16862746, 0.101960786, 0.03529412, 1)
+
+[node name="TextCanvas" type="CanvasLayer" unique_id=2023312750]
+script = ExtResource("1_3inqg")
+
+[node name="TextBox" type="MarginContainer" parent="." unique_id=1457092575]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="TextBox" unique_id=481168489]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3inqg")
+
+[node name="TextContainer" type="MarginContainer" parent="TextBox" unique_id=1473409916]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="TextBox/TextContainer" unique_id=1038993980]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "default text"
+autowrap_mode = 2
+clip_text = true
