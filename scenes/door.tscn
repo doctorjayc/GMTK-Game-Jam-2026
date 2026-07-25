@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu0bnedoscntm"]
 
-[ext_resource type="Script" uid="uid://485xat48vv7j" path="res://door.gd" id="1_v6xrn"]
+[ext_resource type="Script" uid="uid://485xat48vv7j" path="res://scripts/door.gd" id="1_v6xrn"]
 [ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="2_0phs7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50cdl"]

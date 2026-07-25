@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dts5mo0d43qki"]
 
-[ext_resource type="Script" uid="uid://b56ltk48c85oh" path="res://lever.gd" id="1_1btnt"]
+[ext_resource type="Script" uid="uid://b56ltk48c85oh" path="res://scripts/lever.gd" id="1_1btnt"]
 [ext_resource type="Texture2D" uid="uid://dqciwk07tsuy0" path="res://assets/snailset1.3.png" id="2_7uavd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soi7j"]
