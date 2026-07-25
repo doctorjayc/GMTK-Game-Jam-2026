@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 res://scenes/level.tscn
 res://scenes/level.gd
+=======
+res://Current_scheck_point.tscn
+res://scripts/player.gd
+res://scenes/level.tscn
+>>>>>>> 9e2eb104b5309951b83b9aa938e8a4ced9205c3d
