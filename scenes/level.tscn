@@ -292,14 +292,9 @@ position = Vector2(87, -84)
 [node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("2_w7c3h")]
 
 [node name="count_interactable" parent="." unique_id=780565488 node_paths=PackedStringArray("canvas") instance=ExtResource("3_w8frs")]
-position = Vector2(263, -26)
+z_index = -1
+position = Vector2(263, -16)
 canvas = NodePath("../TextCanvas")
-
-[node name="ColorRect" type="ColorRect" parent="count_interactable" unique_id=378814580]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="tilemap" type="Node" parent="." unique_id=1298232429]
 

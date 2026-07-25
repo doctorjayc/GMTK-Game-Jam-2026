@@ -1,6 +1,7 @@
 extends Area2D
 
 var interactable = false
+var tween
 
 var snailneutral = "res://assets/portraits/snailneutral.png"
 var snailhappy = "res://assets/portraits/snailhappy.png"
@@ -9,6 +10,15 @@ var snailmad = "res://assets/portraits/snailmad.png"
 var snailsad = "res://assets/portraits/snailsad.png"
 
 @export var canvas: Node
+
+# List of Bartholosnail coordinates
+# Note: Supposed to have an extra at the end for now
+var count_coords: Array[Vector2] = [
+	Vector2(263.0, -16.0),
+	Vector2(91.0, -16.0),
+	Vector2(263.0, -16.0),
+	Vector2(91.0, -16.0)
+]
 
 # Interaction text blocks (These are all just placeholders for now!)
 # The order of the interaction_#_select array is:
@@ -100,8 +110,22 @@ func _input(event: InputEvent) -> void:
 			match interaction_count:
 				0:
 					canvas.show_text(interaction_1_open, interaction_1_select, interaction_1_response_a, interaction_1_response_b)
+					await canvas.move_count
+					move_bartholosnail()
 				1:
 					canvas.show_text(interaction_2_open, interaction_2_select, interaction_2_response_a, interaction_2_response_b)
+					await canvas.move_count
+					move_bartholosnail()
 				2:
 					canvas.show_text(interaction_3_open, interaction_3_select, interaction_3_response_a, interaction_3_response_b)
+					await canvas.move_count
+					move_bartholosnail()
 			interaction_count += 1
+
+func move_bartholosnail():
+	tween = create_tween()
+	tween.tween_property($AnimatedSprite2D, "modulate:a", 0, 0.4)
+	await tween.finished
+	global_position = count_coords[interaction_count]
+	$AnimatedSprite2D.modulate.a = 1
+	

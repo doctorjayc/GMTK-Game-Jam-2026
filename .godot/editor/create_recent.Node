@@ -1,3 +1,4 @@
+AnimatedSprite2D
 ProgressBar
 Label
 VBoxContainer
@@ -10,6 +11,4 @@ CollisionShape2D
 Area2D
 Node2D
 Sprite2D
-AnimatedSprite2D
 RigidBody2D
-ColorRect

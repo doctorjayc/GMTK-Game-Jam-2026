@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal advance
+signal move_count
 
 @onready var textbox = $TextBox
 @onready var label = $TextBox/TextContainer/Label
@@ -71,16 +72,13 @@ func show_text(initial_text_content, option_text_content, end_text_content_a, en
 		selector_b.text = ""
 		
 		# Shows ending text based on which option was selected, and adds love to love meter if the correct option was chosen
-		print("The selected option was " + current_option)
 		if current_option == "a":
 			# Changes love meter
-			print("The correct option was " + option_text_content[4])
 			if current_option == option_text_content[4]:
 				if current_love <= 100:
 					current_love += love_change_percent
 				else:
 					current_love = 100
-				print(current_love)
 				love_tween = create_tween()
 				love_tween.tween_property(love_meter, "value", current_love, 1)
 			# Shows text
@@ -98,7 +96,6 @@ func show_text(initial_text_content, option_text_content, end_text_content_a, en
 					current_love += love_change_percent
 				else:
 					current_love = 100
-				print(current_love)
 				love_tween = create_tween()
 				love_tween.tween_property(love_meter, "value", current_love, 1)
 			# Shows text
@@ -111,6 +108,7 @@ func show_text(initial_text_content, option_text_content, end_text_content_a, en
 		
 		hide_text()
 		running = false
+		move_count.emit()
 
 # Skips the current text being displayed, or advances if text is finished
 func _input(event: InputEvent) -> void:
