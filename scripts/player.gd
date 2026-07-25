@@ -29,7 +29,7 @@ func _ready() -> void:
 	pass
 func _physics_process(_delta: float) -> void:
 	add_gravity()
-	print("yessss")
+	
 	dir = Input.get_axis('left','right')
 	if dir != 0:
 		last_dir = dir
@@ -165,3 +165,16 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		
 func add_screen_shake(amount:float):
 	$Camera2D.set_screen_shake(amount)
+
+	
+func die():
+	
+	var level =  get_tree().get_first_node_in_group('level')
+	global_position = level.current_check_point
+	if shell_instance!= null:
+		
+		deletable = true
+		change_height_state(height_state.still)
+		change_state(state.normal_walk)
+func  conveyer_belt():
+	velocity

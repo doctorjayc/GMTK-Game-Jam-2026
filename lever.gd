@@ -13,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
+	
 	if shell!=null:
 		if shell.global_position.distance_to(self.global_position)  < 30:
 			change_state()
@@ -32,5 +32,6 @@ func change_state():
 		var doors =  get_tree().get_nodes_in_group('door')
 		for i in doors:
 			if i.door_interactable_value == interactablevalue:
+				i.number_of_levers -=1
 				i.open()
 		on = true
