@@ -342,10 +342,8 @@ position = Vector2(339, -35.999985)
 rotation = 0.64751714
 shape = SubResource("RectangleShape2D_u52ul")
 
-[node name="Player" parent="." unique_id=813911275 groups=["conveyer"] instance=ExtResource("1_u52ul")]
+[node name="Player" parent="." unique_id=813911275 instance=ExtResource("1_u52ul")]
 position = Vector2(87, -84)
-normal_speed = null
-gravity = null
 
 [node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("2_w7c3h")]
 
@@ -399,7 +397,7 @@ position = Vector2(-30, -54)
 texture = ExtResource("4_mx8sn")
 
 [node name="conveyer" type="TileMapLayer" parent="." unique_id=1000435213]
-tile_map_data = PackedByteArray("AAD8/wQAAAAAAAkAAAAEAP7/AAAAAAgAAAA=")
+tile_map_data = PackedByteArray("AAD8/wQAAAAAAAkAAAA=")
 tile_set = SubResource("TileSet_8iemx")
 
 [connection signal="pressed" from="CanvasLayer/Reset current_pos" to="." method="_on_reset_current_pos_pressed"]

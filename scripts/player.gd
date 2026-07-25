@@ -31,7 +31,6 @@ func _physics_process(_delta: float) -> void:
 	add_gravity()
 	
 	dir = Input.get_axis('left','right')
-	print(dir)
 	if dir != 0:
 		last_dir = dir
 	#if Input.is_action_just_pressed("interact_e"):
@@ -42,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 	elif dir > 0:
 		sprite.flip_h = false
 	
-	#velocity.x = SPEED*dir
+	velocity.x = move_toward(0,SPEED,0.7)
 	movement()
 	move_and_slide()
 
@@ -177,3 +176,5 @@ func die():
 		deletable = true
 		change_height_state(height_state.still)
 		change_state(state.normal_walk)
+func  conveyer_belt():
+	velocity
