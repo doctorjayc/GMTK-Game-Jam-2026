@@ -1,9 +1,3 @@
 res://Current_scheck_point.tscn
 res://scripts/player.gd
-res://scenes/player.tscn
-res://scripts/text_canvas.gd
-res://scripts/player.gd
-res://scenes/count_interactable.tscn
 res://scenes/level.tscn
-res://scenes/text_canvas.tscn
-res://scripts/count_interactable.gd
