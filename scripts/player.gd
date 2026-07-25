@@ -16,6 +16,7 @@ var flying_speed:float = 100
 var last_dir:float = 1
 var dash_speed = 250
 var flyable:bool = true
+var talking:bool = false
 var shell_spawned:bool = false
 var deletable:bool = false
 var shell_instance: Node
@@ -29,7 +30,7 @@ func _ready() -> void:
 	pass
 func _physics_process(_delta: float) -> void:
 	add_gravity()
-	print("yessss")
+	#print("yessss")
 	dir = Input.get_axis('left','right')
 	if dir != 0:
 		last_dir = dir
@@ -114,8 +115,6 @@ func change_state(state_change):
 			spawn_shell()
 			flyable = false
 			sprite.play("no_shell")
-			# Double jump effect . I am removing this for the flying
-			#velocity.y = JUMP_VELOCITY * 1.5
 		
 		state.roll:
 			current_state = state.roll

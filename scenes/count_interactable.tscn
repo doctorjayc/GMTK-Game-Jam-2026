@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bv2i4ax75ggk4"]
 
-[ext_resource type="Script" uid="uid://e1a8uv04cmkh" path="res://scripts/interactable.gd" id="1_vyifp"]
+[ext_resource type="Script" uid="uid://e1a8uv04cmkh" path="res://scripts/count_interactable.gd" id="1_vyifp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vyifp"]
 

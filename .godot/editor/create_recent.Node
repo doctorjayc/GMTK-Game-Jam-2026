@@ -1,3 +1,8 @@
+ProgressBar
+Label
+VBoxContainer
+HBoxContainer
+Panel
 Timer
 TileMapLayer
 StaticBody2D
@@ -8,8 +13,3 @@ Sprite2D
 AnimatedSprite2D
 RigidBody2D
 ColorRect
-Node
-TileMap
-Label
-MarginContainer
-Panel
