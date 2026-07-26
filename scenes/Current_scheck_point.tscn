@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b8guxfeh11hau"]
 
 [ext_resource type="Script" uid="uid://kp4747g6sy8t" path="res://scripts/Current_check_point.tscn.gd" id="1_8yu85"]
+[ext_resource type="Texture2D" uid="uid://b2u0p5el4nvet" path="res://assets/snailset1.6.png" id="2_mol0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lgyk"]
 size = Vector2(118, 99)
@@ -13,5 +14,11 @@ script = ExtResource("1_8yu85")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=89892512]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_0lgyk")
+
+[node name="Snailset1_6" type="Sprite2D" parent="." unique_id=270860753]
+position = Vector2(1, 1)
+texture = ExtResource("2_mol0a")
+region_enabled = true
+region_rect = Rect2(192, 112, 16, 40)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
