@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0lhdd8gnw16c"
+path="res://.godot/imported/flying propeller loop.wav-6bdfc5ca1b6cc6d8798252cb7718c6b8.sample"
+
+[deps]
+
+source_file="res://assets/flying propeller loop.wav"
+dest_files=["res://.godot/imported/flying propeller loop.wav-6bdfc5ca1b6cc6d8798252cb7718c6b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

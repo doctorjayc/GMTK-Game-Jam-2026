@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dkcnn7t5804o0" path="res://bounce.tscn" id="8_ttu8v"]
 [ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://scenes/door.tscn" id="9_arlwx"]
 [ext_resource type="PackedScene" uid="uid://c0nl0wtthiilr" path="res://scenes/button.tscn" id="10_t6wdf"]
-[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://scenes/lever.tscn" id="11_p6yen"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0vhbo"]
 texture = ExtResource("1_ilwad")
@@ -493,12 +492,7 @@ script = null
 position = Vector2(24, -20)
 door_interactable_value = 1
 number_of_buttons = 1
-number_of_levers = 1
 
 [node name="Button" parent="." unique_id=1594361557 instance=ExtResource("10_t6wdf")]
-position = Vector2(-22, 11)
-interactablevalue = 1
-
-[node name="Lever" parent="." unique_id=1558045770 instance=ExtResource("11_p6yen")]
-position = Vector2(29, 9)
+position = Vector2(94, 7)
 interactablevalue = 1

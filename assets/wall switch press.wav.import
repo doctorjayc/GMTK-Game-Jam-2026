@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtjccerbn8xy4"
+path="res://.godot/imported/wall switch press.wav-5c1f4c4827c2913cc466babc03b78ccb.sample"
+
+[deps]
+
+source_file="res://assets/wall switch press.wav"
+dest_files=["res://.godot/imported/wall switch press.wav-5c1f4c4827c2913cc466babc03b78ccb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
