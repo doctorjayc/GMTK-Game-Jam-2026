@@ -15,8 +15,8 @@ func open():
 	print('open',number_of_buttons,number_of_levers)
 	if number_of_buttons <=0 and number_of_levers <=0:
 		
-		#if number_of_buttons ==0 and number_of_levers==0:
-		$CollisionShape2D.disabled = true
+		$CollisionShape2D.set_deferred("disabled", true)
+		#call_deferred(disable)
 		$Snailset1_4.hide()
 		$Snailset1_5.show()
 		var player = get_tree().get_first_node_in_group('player')
@@ -26,3 +26,5 @@ func close():
 	$Snailset1_5.hide()
 	$Snailset1_4.show()
 	print('close')
+func disable():
+	$CollisionShape2D.disabled = true
