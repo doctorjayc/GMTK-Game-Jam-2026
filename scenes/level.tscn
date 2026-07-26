@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://6v6oi1jt6t6q" path="res://scenes/spawn_pos.tscn" id="9_olg7q"]
 [ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://dl365eeg45y31" path="res://bounce.tscn" id="11_t1rx8"]
-[ext_resource type="PackedScene" uid="uid://ba704mo7nurh8" path="res://scenes/spikes.tscn" id="12_8iemx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgho"]
 size = Vector2(518, 136)
@@ -401,7 +400,7 @@ tile_set = SubResource("TileSet_8iemx")
 
 [node name="Bounce" parent="." unique_id=970003132 instance=ExtResource("11_t1rx8")]
 
-[node name="spikes" parent="." unique_id=51141482 instance=ExtResource("12_8iemx")]
-position = Vector2(79, -28)
+[node name="Bounce2" parent="." unique_id=1657040424 instance=ExtResource("11_t1rx8")]
+position = Vector2(167, -19)
 
 [connection signal="pressed" from="CanvasLayer/Reset current_pos" to="." method="_on_reset_current_pos_pressed"]

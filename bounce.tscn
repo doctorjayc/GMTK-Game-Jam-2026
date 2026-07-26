@@ -10,6 +10,7 @@ size = Vector2(14, 9)
 size = Vector2(14.5, 10)
 
 [node name="Bounce" type="StaticBody2D" unique_id=970003132 groups=["bounce"]]
+collision_layer = 16385
 collision_mask = 8
 script = ExtResource("1_bklnn")
 
