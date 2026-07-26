@@ -496,3 +496,5 @@ number_of_buttons = 1
 [node name="Button" parent="." unique_id=1594361557 instance=ExtResource("10_t6wdf")]
 position = Vector2(94, 7)
 interactablevalue = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=928025069]
