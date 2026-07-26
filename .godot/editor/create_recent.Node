@@ -1,7 +1,7 @@
+CollisionShape2D
 Label
 CanvasLayer
 Timer
-CollisionShape2D
 Area2D
 StaticBody2D
 TileMapLayer

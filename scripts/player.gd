@@ -2,6 +2,13 @@ extends CharacterBody2D
 
 @export var normal_speed = 50
 @export var gravity:float =6
+@export var fly_acceleration:float = 7.5
+@export var fly_speed_max:float = -150   # top upward speed, negative = up
+@export var fly_decay:float = 8          # how fast upward speed bleeds off after release
+@export var max_fly_time:float = 3
+@export var spring_velocity:float = -300
+@export var conveyor_speed:float = 60
+var fly_time_left:float = 0
 #SPAWNING SPAWNS ANOTHER SHELL
 #CONVEYERS DONT WORK YET
 #NEITHER DO BOUNCE PLATFORMS
@@ -60,8 +67,29 @@ func _physics_process(_delta: float) -> void:
 	velocity.x = move_toward(0,SPEED,0.7)
 	movement()
 	move_and_slide()
+	check_spring_bounce()
+	check_conveyor()
+
+func check_spring_bounce():
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider.is_in_group("bounce"):
+			velocity.y = spring_velocity
+			change_height_state(height_state.fall)
+
+func check_conveyor():
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider.is_in_group("conveyor_right"):
+			velocity.x += conveyor_speed
+		elif collider.is_in_group("conveyor_left"):
+			velocity.x -= conveyor_speed
 
 func movement():
+	if Input.is_action_just_pressed('interact') and deletable:
+		remove_shell()
+		change_state(state.normal_walk)
+	
 	match current_state:
 		state.normal_walk:
 			velocity.x = dir * SPEED
@@ -71,26 +99,20 @@ func movement():
 				change_state(state.roll)
 		
 		state.fly:
-			print("fly")
-			
 			velocity.x = dir * SPEED
-			SPEED = flying_speed
-			if Input.is_action_just_released("jump"):
-				
-				var timer = get_tree().create_timer(0.05)
-				await timer.timeout
-				velocity.y = 0
-			#velocity.y = 0
-				change_height_state(height_state.fall)
-				
-			# Removes the shell and enters normal state when interacting next to a shell
+			fly_time_left -= get_physics_process_delta_time()
+			if Input.is_action_pressed("jump") and fly_time_left > 0:
+				velocity.y = max(velocity.y - fly_acceleration, fly_speed_max)
+			else:
+				velocity.y = move_toward(velocity.y, 0, fly_decay)
+				if velocity.y >= -5:
+					change_state(state.normal_walk)
+					change_height_state(height_state.fall)
 			if Input.is_action_just_pressed('interact'):
 				if deletable:
 					remove_shell()
 					change_state(state.normal_walk)
-					print('deleteble')
-					
-		# Note: I have not touched this yet, it is still unfinished
+				# Note: I have not touched this yet, it is still unfinished
 		state.roll:
 			print("'rollllld")
 			print(last_dir)
@@ -104,10 +126,9 @@ func movement():
 	match current_height_state:
 		height_state.fall:
 			velocity.x = SPEED * dir
-			
 			if is_on_floor():
 				change_height_state(height_state.still)
-				sprite.play('no_shell')
+				sprite.play('no_shell' if shell_instance != null else 'idle')
 			if Input.is_action_just_pressed('jump'):
 				change_state(state.fly)
 			
@@ -133,25 +154,21 @@ func change_state(state_change):
 		state.normal_walk:
 			SPEED = normal_speed
 			flyable = true
-			current_state  = state.normal_walk
-			sprite.play("idle")
-			
+			current_state = state.normal_walk
+			sprite.play('no_shell' if shell_instance != null else 'idle')
+					
 		state.fly:
-			
-				
 			if flyable == false:
 				return
-			velocity.y = -170
 			gravity = 2
 			current_state = state.fly
+			fly_time_left = max_fly_time
 			spawn_shell()
 			flyable = false
-			
 			sprite.play("fly")
-			$Snail_timer.start()
-			# Double jump effect . I am removing this for the flying
-			#velocity.y = JUMP_VELOCITY * 1.5
-		
+					# Double jump effect . I am removing this for the flying
+					#velocity.y = JUMP_VELOCITY * 1.5
+				
 		state.roll:
 			current_state = state.roll
 			SPEED = 300
@@ -180,16 +197,13 @@ func spawn_shell():
 		shell_spawned = true
 		shell_instance = shell_object.instantiate()
 		get_tree().current_scene.add_child(shell_instance)
-	#Im changing this to make the shell spawn at the same position of the player
-	#if dir < 0:
-		#shell_instance.set_position(Vector2((position.x + 10), (position.y)))
-	#elif dir > 0:
-		#shell_instance.set_position(Vector2((position.x - 10), (position.y)))
-		shell_instance.global_position = self.global_position
+		var spawn_pos = self.global_position + Vector2(0, -8)
+		shell_instance.global_position = spawn_pos
 
 func remove_shell():
 	shell_spawned = false
 	shell_instance.queue_free()
+	shell_instance = null
 	print('remove')
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("shell"):
