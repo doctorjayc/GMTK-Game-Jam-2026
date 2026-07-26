@@ -14,10 +14,10 @@ var snailsad = "res://assets/portraits/snailsad.png"
 # List of Bartholosnail coordinates
 # Note: Supposed to have an extra at the end for now
 var count_coords: Array[Vector2] = [
-	Vector2(263.0, -16.0),
-	Vector2(91.0, -16.0),
-	Vector2(263.0, -16.0),
-	Vector2(91.0, -16.0)
+	Vector2(44.0, 16.0),
+	Vector2(95.0, 16.0),
+	Vector2(44.0, 16.0),
+	Vector2(95.0, 16.0)
 ]
 
 # Interaction text blocks (These are all just placeholders for now!)
