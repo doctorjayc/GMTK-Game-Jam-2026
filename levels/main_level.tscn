@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b8guxfeh11hau" path="res://scenes/Current_scheck_point.tscn" id="6_yb8kn"]
 [ext_resource type="PackedScene" uid="uid://ba704mo7nurh8" path="res://scenes/spikes.tscn" id="7_43k3a"]
 [ext_resource type="PackedScene" uid="uid://dkcnn7t5804o0" path="res://bounce.tscn" id="8_ttu8v"]
+[ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://scenes/door.tscn" id="9_arlwx"]
+[ext_resource type="PackedScene" uid="uid://c0nl0wtthiilr" path="res://scenes/button.tscn" id="10_t6wdf"]
+[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://scenes/lever.tscn" id="11_p6yen"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0vhbo"]
 texture = ExtResource("1_ilwad")
@@ -452,17 +455,6 @@ custom_data_layer_0/name = "conveyer"
 custom_data_layer_0/type = 5
 sources/0 = SubResource("TileSetAtlasSource_yb8kn")
 
-[sub_resource type="Gradient" id="Gradient_yb8kn"]
-colors = PackedColorArray(0, 0, 0, 1, 0.93333334, 0.7647059, 0.6039216, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4vdrs"]
-seed = 1
-frequency = 0.0126
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q1b21"]
-noise = SubResource("FastNoiseLite_4vdrs")
-color_ramp = SubResource("Gradient_yb8kn")
-
 [node name="MainLevel" type="Node2D" unique_id=1097267944 groups=["level"]]
 script = ExtResource("1_wg11f")
 
@@ -483,7 +475,7 @@ canvas = NodePath("../TextCanvas")
 
 [node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("4_55n5f")]
 
-[node name="Conveyer" type="TileMapLayer" parent="." unique_id=572230279]
+[node name="Conveyer2" type="TileMapLayer" parent="." unique_id=1890335393]
 z_index = -2
 tile_map_data = PackedByteArray("AAAEAAAAAAAAAAkAAAAEAP//AAAAAAkAAAAEAP7/AAAAAAoAAAAFAP7/AAAAAAoAAAAGAP7/AAAAAAoAAAAHAP7/AAAAAAoAAAA=")
 tile_set = SubResource("TileSet_43k3a")
@@ -496,3 +488,17 @@ position = Vector2(-46, 5)
 [node name="Bounce" parent="." unique_id=970003132 instance=ExtResource("8_ttu8v")]
 position = Vector2(-24, 14)
 script = null
+
+[node name="door" parent="." unique_id=548825401 instance=ExtResource("9_arlwx")]
+position = Vector2(24, -20)
+door_interactable_value = 1
+number_of_buttons = 1
+number_of_levers = 1
+
+[node name="Button" parent="." unique_id=1594361557 instance=ExtResource("10_t6wdf")]
+position = Vector2(-22, 11)
+interactablevalue = 1
+
+[node name="Lever" parent="." unique_id=1558045770 instance=ExtResource("11_p6yen")]
+position = Vector2(29, 9)
+interactablevalue = 1
