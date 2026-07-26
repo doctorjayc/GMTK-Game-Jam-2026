@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://hecqsu2oiopg"]
+
+[ext_resource type="Texture2D" uid="uid://bmvxufarif1va" path="res://assets/grass_death_plane.png" id="1_50e7m"]
+[ext_resource type="Script" uid="uid://b1ybxm6aq7pk1" path="res://scenes/grass_death.gd" id="1_amxba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amxba"]
+size = Vector2(478, 20)
+
+[node name="Grass_death" type="Node2D" unique_id=1986565272]
+script = ExtResource("1_amxba")
+
+[node name="GrassDeathPlane" type="Sprite2D" parent="." unique_id=2139309874]
+position = Vector2(-1, -125)
+texture = ExtResource("1_50e7m")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=944778769]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1678460547]
+shape = SubResource("RectangleShape2D_amxba")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

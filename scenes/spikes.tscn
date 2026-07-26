@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ba704mo7nurh8"]
+
+[ext_resource type="Script" uid="uid://j1tcyc37d12m" path="res://scenes/spikes.gd" id="1_bflj7"]
+[ext_resource type="Texture2D" uid="uid://b2u0p5el4nvet" path="res://assets/snailset1.6.png" id="2_kd5gq"]
+[ext_resource type="Script" uid="uid://bimqll4gxe7ek" path="res://scenes/area_2d.gd" id="3_0vi4p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4mxr"]
+size = Vector2(16, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa8pu"]
+size = Vector2(16.2, 4.2)
+
+[node name="spikes" type="StaticBody2D" unique_id=51141482]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_bflj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1629768508]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_w4mxr")
+
+[node name="Snailset1_6" type="Sprite2D" parent="." unique_id=144986639]
+position = Vector2(0, 4)
+texture = ExtResource("2_kd5gq")
+region_enabled = true
+region_rect = Rect2(96, 24, 16, 8)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1397566378]
+collision_layer = 0
+script = ExtResource("3_0vi4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1769489725]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_xa8pu")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

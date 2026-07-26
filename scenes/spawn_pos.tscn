@@ -1,3 +1,24 @@
 [gd_scene format=3 uid="uid://6v6oi1jt6t6q"]
 
+[ext_resource type="Script" uid="uid://kyvdg5mdk5yy" path="res://scenes/spawn_pos.gd" id="1_wyhy3"]
+[ext_resource type="Texture2D" uid="uid://b2u0p5el4nvet" path="res://assets/snailset1.6.png" id="2_p5tj5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ug60r"]
+size = Vector2(67, 75)
+
 [node name="Spawn pos" type="Marker2D" unique_id=1460864061]
+script = ExtResource("1_wyhy3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1363626492]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=425071585]
+position = Vector2(2.5, -4.5)
+shape = SubResource("RectangleShape2D_ug60r")
+
+[node name="Snailset1_6" type="Sprite2D" parent="." unique_id=1036489245]
+texture = ExtResource("2_p5tj5")
+region_enabled = true
+region_rect = Rect2(192, 112, 16, 32)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

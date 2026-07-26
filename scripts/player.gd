@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 @export var normal_speed = 50
-@export var gravity:float = 6
-#FLY GOES INFINITELY IP I WILL FIX IT
+@export var gravity:float =6
+#SPAWNING SPAWNS ANOTHER SHELL
+#CONVEYERS DONT WORK YET
+#NEITHER DO BOUNCE PLATFORMS
 # Note: Moved jump and fall states as they would overwrite other states, added still state as well for when the snail is not jumping or falling
 enum state{fly, roll, normal_walk}
 enum height_state{jump, fall, still}
@@ -19,28 +21,42 @@ var flyable:bool = true
 var shell_spawned:bool = false
 var deletable:bool = false
 var shell_instance: Node
-
+#var actual_gravity = 0.7
+var actual_speed = 50
+@export var timer_time_left:float = 20
 @onready var sprite = $AnimatedSprite2D
-
+var jumpable:bool
 # Loads shell
 # IMPORTANT: If the shell path is changed this needs to be updated
 @onready var shell_object = preload("res://scenes/shell.tscn")
+var bouncing:bool = false
 func _ready() -> void:
 	pass
 func _physics_process(_delta: float) -> void:
+
 	add_gravity()
-	
+	$CanvasLayer/Snail_timer_label.text = str($Snail_timer.time_left)
 	dir = Input.get_axis('left','right')
 	if dir != 0:
 		last_dir = dir
-	#if Input.is_action_just_pressed("interact_e"):
-		#deletable = true
+		#dont know why bounce doesent work ytet
+	#if get_slide_collision(0):
+		#if get_slide_collision(0).get_collider() in get_tree().get_nodes_in_group('bounce'):
+			#
+			#velocity = velocity.bounce(get_slide_collision(0).get_normal()) * 100
+			#print('BOUNCE')
+			
+	#if bouncing :
+		#return
+	
 	# Flips the sprite based on the current direction
 	if dir < 0:
 		sprite.flip_h = true
 	elif dir > 0:
 		sprite.flip_h = false
-	
+	if shell_instance == null:
+		$Snail_timer.wait_time = timer_time_left
+		$Snail_timer.stop()
 	velocity.x = move_toward(0,SPEED,0.7)
 	movement()
 	move_and_slide()
@@ -55,15 +71,18 @@ func movement():
 				change_state(state.roll)
 		
 		state.fly:
+			print("fly")
+			
 			velocity.x = dir * SPEED
 			SPEED = flying_speed
-			# FLYING IS NOT DONE FLYING IS NOT DONE  I WILL FINISH IT WHEN I HAVE THE TIME
-			# Note: Not being able to jump here is expected for now, since you should fly eventually
-			velocity.y = lerpf(0,-100,0.2)
-			var timer = get_tree().create_timer(1)
-			await  timer.timeout
-			change_height_state(height_state.fall)
-			velocity.y = 0
+			if Input.is_action_just_released("jump"):
+				
+				var timer = get_tree().create_timer(0.05)
+				await timer.timeout
+				velocity.y = 0
+			#velocity.y = 0
+				change_height_state(height_state.fall)
+				
 			# Removes the shell and enters normal state when interacting next to a shell
 			if Input.is_action_just_pressed('interact'):
 				if deletable:
@@ -75,8 +94,9 @@ func movement():
 		state.roll:
 			print("'rollllld")
 			print(last_dir)
+			gravity = 2
 			velocity.x = SPEED * last_dir
-			var timer = get_tree().create_timer(1)
+			var timer = get_tree().create_timer(0.3)
 			#timer.start()
 			await timer.timeout
 			change_state(state.normal_walk)
@@ -84,21 +104,30 @@ func movement():
 	match current_height_state:
 		height_state.fall:
 			velocity.x = SPEED * dir
+			
 			if is_on_floor():
 				change_height_state(height_state.still)
+				sprite.play('no_shell')
 			if Input.is_action_just_pressed('jump'):
 				change_state(state.fly)
-		
+			
 		height_state.jump:
+			
+			#actual_gravity*= 3
 			if is_on_floor():
 				change_state(state.normal_walk)
 			if velocity.y > 0:
 				change_height_state(height_state.fall)
 			if velocity.y == 0:
 				change_height_state(height_state.still)
-			if Input.is_action_just_pressed('jump') and velocity.y > -50:
+			if Input.is_action_just_pressed('jump') and velocity.y > -50 :
+				
 				change_state(state.fly)
-
+		height_state.still:
+			if  Input.is_action_just_pressed("jump"):
+				
+				change_height_state(height_state.jump)
+				
 func change_state(state_change):
 	match state_change:
 		state.normal_walk:
@@ -106,14 +135,20 @@ func change_state(state_change):
 			flyable = true
 			current_state  = state.normal_walk
 			sprite.play("idle")
-		
+			
 		state.fly:
+			
+				
 			if flyable == false:
 				return
+			velocity.y = -170
+			gravity = 2
 			current_state = state.fly
 			spawn_shell()
 			flyable = false
-			sprite.play("no_shell")
+			
+			sprite.play("fly")
+			$Snail_timer.start()
 			# Double jump effect . I am removing this for the flying
 			#velocity.y = JUMP_VELOCITY * 1.5
 		
@@ -124,13 +159,14 @@ func change_state(state_change):
 func change_height_state(height_state_change):
 	match height_state_change:
 		height_state.jump:
+			
 			flyable = true
 			current_height_state = height_state.jump
 			velocity.y = JUMP_VELOCITY
 		
 		height_state.fall:
 			current_height_state = height_state.fall
-		
+			gravity = 6
 		height_state.still:
 			current_height_state = height_state.still
 
@@ -140,15 +176,16 @@ func add_gravity():
 
 # Spawns the shell object next to the player based on where they are facing
 func spawn_shell():
-	shell_spawned = true
-	shell_instance = shell_object.instantiate()
-	get_tree().current_scene.add_child(shell_instance)
+	if shell_instance == null:
+		shell_spawned = true
+		shell_instance = shell_object.instantiate()
+		get_tree().current_scene.add_child(shell_instance)
 	#Im changing this to make the shell spawn at the same position of the player
 	#if dir < 0:
 		#shell_instance.set_position(Vector2((position.x + 10), (position.y)))
 	#elif dir > 0:
 		#shell_instance.set_position(Vector2((position.x - 10), (position.y)))
-	shell_instance.global_position = self.global_position
+		shell_instance.global_position = self.global_position
 
 func remove_shell():
 	shell_spawned = false
@@ -172,9 +209,13 @@ func die():
 	var level =  get_tree().get_first_node_in_group('level')
 	global_position = level.current_check_point
 	if shell_instance!= null:
+		remove_shell()
 		
-		deletable = true
-		change_height_state(height_state.still)
-		change_state(state.normal_walk)
-func  conveyer_belt():
-	velocity
+	change_height_state(height_state.still)
+	change_state(state.normal_walk)
+
+
+func _on_snail_timer_timeout() -> void:
+	if shell_instance == null:
+		return
+	die()
