@@ -1,0 +1,19 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://vgcpqivsijrm"]
+
+[sub_resource type="Gradient" id="Gradient_6ab75"]
+offsets = PackedFloat32Array(0, 0.3409091, 0.6136364, 1)
+colors = PackedColorArray(0.5803922, 0.28627452, 0.2509804, 1, 0.90110826, 0.77916455, 0.40965047, 1, 0.9529412, 0.85882354, 0.43529412, 1, 0.5803922, 0.28627452, 0.2509804, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4vdrs"]
+gradient = SubResource("Gradient_6ab75")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2000, 2000, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 10.0
+gravity = Vector3(30, 0, 0)
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_4vdrs")

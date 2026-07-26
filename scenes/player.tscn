@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://8pxbg3d3mbyb" path="res://assets/snail_propeller-Sheet-export.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c4xdkh80fym1r" path="res://assets/snail_no_shell.png" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://b8kj3k8yuqmym" path="res://scripts/camera_2d.gd" id="4_dqkch"]
+[ext_resource type="Shader" uid="uid://nfnbat7h3m84" path="res://scenes/vignette2.gdshader" id="6_tuyoq"]
+[ext_resource type="Material" uid="uid://vgcpqivsijrm" path="res://scripts/fireflies.tres" id="7_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qlg0r")
@@ -107,6 +109,22 @@ size = Vector2(20, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(31, 23)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q1b21"]
+shader = ExtResource("6_tuyoq")
+shader_parameter/alpha = 0.9
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.6
+
+[sub_resource type="Gradient" id="Gradient_smehm"]
+offsets = PackedFloat32Array(0, 0.5751445, 1)
+colors = PackedColorArray(0.93333334, 0.7647059, 0.6039216, 1, 0.27339804, 0.22563648, 0.18009645, 1, 0.012617188, 0.012617188, 0.012617188, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q1b21"]
+gradient = SubResource("Gradient_smehm")
+fill = 1
+fill_from = Vector2(0.47293448, 0.48433048)
+fill_to = Vector2(0.8774929, 0.16524217)
+
 [node name="Player" type="CharacterBody2D" unique_id=813911275 groups=["player"]]
 collision_layer = 9
 script = ExtResource("1_4flbx")
@@ -124,6 +142,9 @@ shape = SubResource("RectangleShape2D_y4r1p")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=720065745]
 process_priority = 1
+offset = Vector2(0, -30)
+position_smoothing_enabled = true
+position_smoothing_speed = 9.0
 script = ExtResource("4_dqkch")
 
 [node name="dash timer" type="Timer" parent="." unique_id=1161392597]
@@ -148,6 +169,22 @@ one_shot = true
 [node name="Snail_timer_label" type="Label" parent="CanvasLayer" unique_id=71090047]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1294216547]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1082587832]
+material = SubResource("ShaderMaterial_q1b21")
+offset_right = 300.0
+offset_bottom = 200.0
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1520219284]
+position = Vector2(0, -6)
+energy = 4.14
+texture = SubResource("GradientTexture2D_q1b21")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1551483135]
+amount = 8000
+process_material = ExtResource("7_fjrip")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -3,12 +3,17 @@ extends CharacterBody2D
 @export var normal_speed = 50
 @export var gravity:float =6
 @export var fly_acceleration:float = 7.5
-@export var fly_speed_max:float = -150   # top upward speed, negative = up
+@export var fly_speed_max:float = -100   # top upward speed, negative = up
 @export var fly_decay:float = 8          # how fast upward speed bleeds off after release
 @export var max_fly_time:float = 3
 @export var spring_velocity:float = -300
 @export var conveyor_speed:float = 60
-var fly_time_left:float = 0
+@export var squash_duration:float = 0.9
+@export var jump_squash:Vector2 = Vector2(0.8, 1.2)
+@export var land_squash:Vector2 = Vector2(1.25, 0.75)
+@export var fly_squash:Vector2 = Vector2(0.8, 1.2)
+var fly_time_left:float = max_fly_time
+var squash_tween:Tween
 #SPAWNING SPAWNS ANOTHER SHELL
 #CONVEYERS DONT WORK YET
 #NEITHER DO BOUNCE PLATFORMS
@@ -18,8 +23,9 @@ enum height_state{jump, fall, still}
 var current_state = state.normal_walk
 var current_height_state = height_state.still
 
-var SPEED = 50
-const JUMP_VELOCITY = -100
+
+var SPEED = 55
+const JUMP_VELOCITY = -150
 var dir:float
 var flying_speed:float = 100
 var last_dir:float = 1
@@ -109,13 +115,14 @@ func movement():
 			else:
 				velocity.y = move_toward(velocity.y, 0, fly_decay)
 				if velocity.y >= -5:
+					gravity = 6
 					change_state(state.normal_walk)
 					change_height_state(height_state.fall)
-			if Input.is_action_just_pressed('interact'):
-				if deletable:
-					remove_shell()
-					change_state(state.normal_walk)
-				# Note: I have not touched this yet, it is still unfinished
+			if is_on_floor():
+				gravity = 6
+				change_state(state.normal_walk)
+				change_height_state(height_state.still)
+				flyable = true
 		state.roll:
 			print("'rollllld")
 			print(last_dir)
@@ -131,27 +138,26 @@ func movement():
 			velocity.x = SPEED * dir
 			if is_on_floor():
 				change_height_state(height_state.still)
+				fly_time_left = max_fly_time
+				flyable = true
 				sprite.play('no_shell' if shell_instance != null else 'idle')
-			if Input.is_action_just_pressed('jump'):
+				squash_stretch(land_squash)
+			elif Input.is_action_just_pressed('jump') and flyable:
 				change_state(state.fly)
-			
+
 		height_state.jump:
-			
-			#actual_gravity*= 3
-			if is_on_floor():
+			if is_on_floor() and velocity.y >= 0:
 				change_state(state.normal_walk)
-			if velocity.y > 0:
-				change_height_state(height_state.fall)
-			if velocity.y == 0:
 				change_height_state(height_state.still)
-			if Input.is_action_just_pressed('jump') and velocity.y > -50 :
-				
+				flyable = true
+			elif velocity.y > 0:
+				change_height_state(height_state.fall)
+			elif Input.is_action_just_pressed('jump') and velocity.y > -50 and flyable:
 				change_state(state.fly)
+
 		height_state.still:
-			if  Input.is_action_just_pressed("jump"):
-				
+			if Input.is_action_just_pressed("jump"):
 				change_height_state(height_state.jump)
-				
 func change_state(state_change):
 	match state_change:
 		state.normal_walk:
@@ -165,10 +171,10 @@ func change_state(state_change):
 				return
 			gravity = 2
 			current_state = state.fly
-			fly_time_left = max_fly_time
 			spawn_shell()
 			flyable = false
 			sprite.play("fly")
+			squash_stretch(fly_squash)
 					# Double jump effect . I am removing this for the flying
 					#velocity.y = JUMP_VELOCITY * 1.5
 				
@@ -176,6 +182,13 @@ func change_state(state_change):
 			current_state = state.roll
 			SPEED = 300
 
+func squash_stretch(from_scale:Vector2, duration:float = squash_duration):
+	if squash_tween:
+		squash_tween.kill()
+	sprite.scale = from_scale
+	squash_tween = create_tween()
+	squash_tween.tween_property(sprite, "scale", Vector2.ONE, duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
 func change_height_state(height_state_change):
 	match height_state_change:
 		height_state.jump:
@@ -183,6 +196,7 @@ func change_height_state(height_state_change):
 			flyable = true
 			current_height_state = height_state.jump
 			velocity.y = JUMP_VELOCITY
+			squash_stretch(jump_squash)
 		
 		height_state.fall:
 			current_height_state = height_state.fall

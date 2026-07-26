@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c28lnguu1uh8" path="res://scenes/player.tscn" id="2_0vhbo"]
 [ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="3_ldao0"]
 [ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="4_55n5f"]
+[ext_resource type="Material" uid="uid://vgcpqivsijrm" path="res://scripts/fireflies.tres" id="5_wg11f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0vhbo"]
 texture = ExtResource("1_ilwad")
@@ -254,6 +255,20 @@ physics_layer_1/collision_layer = 1
 physics_layer_2/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0vhbo")
 
+[sub_resource type="Gradient" id="Gradient_wg11f"]
+colors = PackedColorArray(0.13333334, 0.1254902, 0.20392157, 1, 0.93333334, 0.7647059, 0.6039216, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yb8kn"]
+seed = 1
+frequency = 0.0145
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_55n5f"]
+width = 2000
+height = 2000
+noise = SubResource("FastNoiseLite_yb8kn")
+color_ramp = SubResource("Gradient_wg11f")
+seamless = true
+
 [node name="MainLevel" type="Node2D" unique_id=1097267944]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2009931253]
@@ -268,3 +283,15 @@ position = Vector2(44, 16)
 canvas = NodePath("../TextCanvas")
 
 [node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("4_55n5f")]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=189725641]
+position = Vector2(33.5, 12.5)
+scale = Vector2(1.1308594, 1.0488281)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("NoiseTexture2D_55n5f")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=82428354]
+visible = false
+amount = 8000
+process_material = ExtResource("5_wg11f")
