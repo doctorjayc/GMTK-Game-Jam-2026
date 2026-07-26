@@ -1,7 +1,7 @@
+PointLight2D
 StaticBody2D
 CollisionShape2D
 GPUParticles2D
-PointLight2D
 ColorRect
 CanvasLayer
 TileMapLayer
@@ -12,9 +12,3 @@ VBoxContainer
 HBoxContainer
 TextureProgressBar
 Panel
-Button
-MarginContainer
-CanvasLayer
-HSplitContainer
-Camera2D
-CollisionShape2D
