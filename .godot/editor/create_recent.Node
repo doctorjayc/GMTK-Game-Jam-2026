@@ -12,4 +12,3 @@ CanvasLayer
 HSplitContainer
 Camera2D
 CollisionShape2D
-Timer

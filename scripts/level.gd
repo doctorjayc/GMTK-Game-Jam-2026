@@ -21,15 +21,16 @@ func conveyer_belt():
 	for i in get_tree().get_nodes_in_group('conveyer'):
 		map_to_local = $conveyer.to_local(i.global_position)
 		grid = $conveyer.local_to_map(map_to_local)
-	
+		print(grid,'grid')
+		print($c)
 	
 		if grid in $conveyer.get_used_cells():
 			var current_grid
-			print(grid,'grid')
+			
 			current_grid = grid
-
+			print(grid)
 			var cell = $conveyer.get_cell_tile_data(grid).get_custom_data('conveyer')
-			i.velocity += Vector2(cell)* 0.6
+			i.position += Vector2(cell)* 0.6
 			if i.has_method('add_gravity'):
 				#MAKING FRAvity 0
 				i.SPEED =0

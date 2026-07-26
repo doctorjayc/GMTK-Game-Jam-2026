@@ -80,7 +80,7 @@ var interaction_3_open = [
 var interaction_3_select = [
 	"placeholder",
 	"placeholder",
-	snailneutral,
+	snailsad,
 	snailneutral,
 	"a"
 ]
