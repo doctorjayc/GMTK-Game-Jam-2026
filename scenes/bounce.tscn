@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dl365eeg45y31"]
 
 [ext_resource type="Texture2D" uid="uid://b2u0p5el4nvet" path="res://assets/snailset1.6.png" id="1_6do1r"]
-[ext_resource type="Script" uid="uid://cy441gtdvdgod" path="res://bounce.gd" id="1_bklnn"]
+[ext_resource type="Script" uid="uid://cy441gtdvdgod" path="res://scripts/bounce.gd" id="1_bklnn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ug7ek"]
 size = Vector2(14, 9)

@@ -1,14 +1,20 @@
 [gd_scene format=3 uid="uid://begci8e8ilt50"]
 
 [ext_resource type="Script" uid="uid://d1516djrk0h7f" path="res://scripts/text_canvas.gd" id="1_3inqg"]
+[ext_resource type="Texture2D" uid="uid://blu1rcekxqmme" path="res://assets/dialoguewithlove.png" id="2_01fpg"]
+[ext_resource type="Texture2D" uid="uid://cplosl42soyqc" path="res://assets/portraits/snailneutral.png" id="3_3w1uu"]
+[ext_resource type="Texture2D" uid="uid://cjn07hea8osxt" path="res://assets/portraits/countneutral.png" id="4_4irv6"]
+[ext_resource type="Texture2D" uid="uid://2ckgeest3u25" path="res://assets/lovemeter.png" id="4_5ouah"]
+[ext_resource type="FontFile" uid="uid://se0fi8aq7gwt" path="res://assets/Ithaca-LVB75.ttf" id="6_63w5d"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3inqg"]
-bg_color = Color(0.039215688, 0.023529412, 0.007843138, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.16862746, 0.101960786, 0.03529412, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ca7f"]
+texture = ExtResource("2_01fpg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3t11"]
+texture = ExtResource("3_3w1uu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4irv6"]
+texture = ExtResource("4_4irv6")
 
 [node name="TextCanvas" type="CanvasLayer" unique_id=2023312750]
 script = ExtResource("1_3inqg")
@@ -18,29 +24,91 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -71.0
+offset_top = -81.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="Panel" type="Panel" parent="TextBox" unique_id=481168489]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3inqg")
+theme_override_styles/panel = SubResource("StyleBoxTexture_3ca7f")
+
+[node name="snail_portrait" type="Panel" parent="TextBox/Panel" unique_id=200793840]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.999999
+offset_top = -66.0
+offset_right = 54.0
+offset_bottom = -26.0
+grow_vertical = 0
+scale = Vector2(1.3199997, 1.3034109)
+theme_override_styles/panel = SubResource("StyleBoxTexture_q3t11")
+
+[node name="count_portrait" type="Panel" parent="TextBox/Panel" unique_id=1007764606]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 15.0
+offset_right = 274.0
+offset_bottom = 55.0
+scale = Vector2(1.3369126, 1.3059987)
+theme_override_styles/panel = SubResource("StyleBoxTexture_4irv6")
+
+[node name="love_meter" type="TextureProgressBar" parent="TextBox/Panel" unique_id=1880585425]
+z_index = -1
+layout_mode = 0
+offset_left = 98.0
+offset_top = 12.0
+offset_right = 219.0
+offset_bottom = 52.0
+scale = Vector2(1.028, 1.028)
+texture_progress = ExtResource("4_5ouah")
 
 [node name="TextContainer" type="MarginContainer" parent="TextBox" unique_id=1473409916]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 77
+theme_override_constants/margin_top = 37
+theme_override_constants/margin_right = 76
 
 [node name="Label" type="Label" parent="TextBox/TextContainer" unique_id=1038993980]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("6_63w5d")
 theme_override_font_sizes/font_size = 10
 text = "default text"
 autowrap_mode = 2
 clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextBox/TextContainer" unique_id=2048205503]
+layout_mode = 2
+
+[node name="VBoxSelector" type="VBoxContainer" parent="TextBox/TextContainer/HBoxContainer" unique_id=82171292]
+layout_mode = 2
+
+[node name="SelectorA" type="Label" parent="TextBox/TextContainer/HBoxContainer/VBoxSelector" unique_id=1513404018]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_63w5d")
+theme_override_font_sizes/font_size = 10
+text = ">"
+
+[node name="SelectorB" type="Label" parent="TextBox/TextContainer/HBoxContainer/VBoxSelector" unique_id=1305226684]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_63w5d")
+theme_override_font_sizes/font_size = 10
+text = ">"
+
+[node name="VBoxOptions" type="VBoxContainer" parent="TextBox/TextContainer/HBoxContainer" unique_id=1559185120]
+layout_mode = 2
+
+[node name="OptionA" type="Label" parent="TextBox/TextContainer/HBoxContainer/VBoxOptions" unique_id=826877562]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_63w5d")
+theme_override_font_sizes/font_size = 10
+text = "This is option A"
+
+[node name="OptionB" type="Label" parent="TextBox/TextContainer/HBoxContainer/VBoxOptions" unique_id=1398755317]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_63w5d")
+theme_override_font_sizes/font_size = 10
+text = "This is option B"

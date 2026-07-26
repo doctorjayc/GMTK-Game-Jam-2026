@@ -1,17 +1,17 @@
 [gd_scene format=4 uid="uid://c8k0peyv4fyxf"]
 
-[ext_resource type="Script" uid="uid://phftn8n06131" path="res://scripts/level.gd" id="1_8c41q"]
-[ext_resource type="PackedScene" uid="uid://c28lnguu1uh8" path="res://scenes/player.tscn" id="1_u52ul"]
-[ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="2_w7c3h"]
-[ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="3_w8frs"]
-[ext_resource type="Texture2D" uid="uid://dqciwk07tsuy0" path="res://assets/snailset1.3.png" id="4_mx8sn"]
-[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://scenes/lever.tscn" id="5_ppgk2"]
-[ext_resource type="PackedScene" uid="uid://bokgnxv67gdia" path="res://scenes/node_2d.tscn" id="6_2r41h"]
-[ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://scenes/door.tscn" id="7_klq6b"]
-[ext_resource type="PackedScene" uid="uid://6v6oi1jt6t6q" path="res://scenes/spawn_pos.tscn" id="9_olg7q"]
-[ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="10_olg7q"]
-[ext_resource type="PackedScene" uid="uid://dl365eeg45y31" path="res://bounce.tscn" id="11_t1rx8"]
-[ext_resource type="PackedScene" uid="uid://ba704mo7nurh8" path="res://scenes/spikes.tscn" id="12_8iemx"]
+[ext_resource type="Script" uid="uid://phftn8n06131" path="res://scripts/level.gd" id="1_ukwr8"]
+[ext_resource type="PackedScene" uid="uid://c28lnguu1uh8" path="res://scenes/player.tscn" id="2_pb8y7"]
+[ext_resource type="Texture2D" uid="uid://dqciwk07tsuy0" path="res://assets/snailset1.3.png" id="3_hy0rb"]
+[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://scenes/lever.tscn" id="4_mxp4k"]
+[ext_resource type="PackedScene" uid="uid://bokgnxv67gdia" path="res://scenes/node_2d.tscn" id="5_d7v53"]
+[ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://scenes/door.tscn" id="6_0qmeg"]
+[ext_resource type="PackedScene" uid="uid://6v6oi1jt6t6q" path="res://scenes/spawn_pos.tscn" id="7_ta7ci"]
+[ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="8_lh335"]
+[ext_resource type="PackedScene" uid="uid://dl365eeg45y31" path="res://scenes/bounce.tscn" id="9_u6cys"]
+[ext_resource type="PackedScene" uid="uid://ba704mo7nurh8" path="res://scenes/spikes.tscn" id="10_368ro"]
+[ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="11_hy0rb"]
+[ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="12_mxp4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgho"]
 size = Vector2(518, 136)
@@ -20,7 +20,7 @@ size = Vector2(518, 136)
 size = Vector2(11, 51)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ppgk2"]
-texture = ExtResource("4_mx8sn")
+texture = ExtResource("3_hy0rb")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -184,7 +184,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_ppgk2")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1rx8"]
-texture = ExtResource("10_olg7q")
+texture = ExtResource("8_lh335")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -318,7 +318,7 @@ custom_data_layer_0/type = 6
 sources/0 = SubResource("TileSetAtlasSource_t1rx8")
 
 [node name="Level" type="Node2D" unique_id=1438791529 groups=["level"]]
-script = ExtResource("1_8c41q")
+script = ExtResource("1_ukwr8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1836542100]
 collision_layer = 3
@@ -344,21 +344,8 @@ position = Vector2(339, -35.999985)
 rotation = 0.64751714
 shape = SubResource("RectangleShape2D_u52ul")
 
-[node name="Player" parent="." unique_id=813911275 groups=["conveyer"] instance=ExtResource("1_u52ul")]
+[node name="Player" parent="." unique_id=813911275 groups=["conveyer"] instance=ExtResource("2_pb8y7")]
 position = Vector2(87, -84)
-
-[node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("2_w7c3h")]
-
-[node name="interactable" parent="." unique_id=780565488 node_paths=PackedStringArray("canvas") instance=ExtResource("3_w8frs")]
-position = Vector2(263, -26)
-displayed_text = Array[String](["Hello! Test 1", "Hi! Test 2", "Greetings! Test 3"])
-canvas = NodePath("../TextCanvas")
-
-[node name="ColorRect" type="ColorRect" parent="interactable" unique_id=378814580]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="tilemap" type="Node" parent="." unique_id=1298232429]
 
@@ -369,23 +356,23 @@ tile_set = SubResource("TileSet_2r41h")
 
 [node name="Snailset1_3" type="Sprite2D" parent="." unique_id=1899479585]
 position = Vector2(395, 656)
-texture = ExtResource("4_mx8sn")
+texture = ExtResource("3_hy0rb")
 
-[node name="Lever" parent="." unique_id=1558045770 instance=ExtResource("5_ppgk2")]
+[node name="Lever" parent="." unique_id=1558045770 instance=ExtResource("4_mxp4k")]
 position = Vector2(106, -27)
 interactablevalue = 1
 
-[node name="Button" parent="." unique_id=1594361557 instance=ExtResource("6_2r41h")]
+[node name="Button" parent="." unique_id=1594361557 instance=ExtResource("5_d7v53")]
 position = Vector2(59, -29)
 interactablevalue = 1
 
-[node name="door" parent="." unique_id=548825401 instance=ExtResource("7_klq6b")]
+[node name="door" parent="." unique_id=548825401 instance=ExtResource("6_0qmeg")]
 position = Vector2(11, -116)
 door_interactable_value = 1
 number_of_buttons = 1
 number_of_levers = 1
 
-[node name="Spawn pos" parent="." unique_id=1460864061 instance=ExtResource("9_olg7q")]
+[node name="Spawn pos" parent="." unique_id=1460864061 instance=ExtResource("7_ta7ci")]
 position = Vector2(9, -21)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2034234502]
@@ -399,9 +386,15 @@ z_index = -1
 tile_map_data = PackedByteArray("AAD8/wQAAAAAAAkAAAAGAPr/AAAAAAkAAAA=")
 tile_set = SubResource("TileSet_8iemx")
 
-[node name="Bounce" parent="." unique_id=970003132 instance=ExtResource("11_t1rx8")]
+[node name="Bounce" parent="." unique_id=970003132 instance=ExtResource("9_u6cys")]
 
-[node name="spikes" parent="." unique_id=51141482 instance=ExtResource("12_8iemx")]
+[node name="spikes" parent="." unique_id=51141482 instance=ExtResource("10_368ro")]
 position = Vector2(79, -28)
+
+[node name="interactable" parent="." unique_id=780565488 node_paths=PackedStringArray("canvas") instance=ExtResource("11_hy0rb")]
+position = Vector2(264, -16)
+canvas = NodePath("../TextCanvas")
+
+[node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("12_mxp4k")]
 
 [connection signal="pressed" from="CanvasLayer/Reset current_pos" to="." method="_on_reset_current_pos_pressed"]

@@ -39,7 +39,7 @@ var jumpable:bool
 var bouncing:bool = false
 func _ready() -> void:
 	pass
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 
 	add_gravity()
 	$CanvasLayer/Snail_timer_label.text = str($Snail_timer.time_left)
@@ -224,7 +224,6 @@ func die():
 	global_position = level.current_check_point
 	if shell_instance!= null:
 		remove_shell()
-		
 	change_height_state(height_state.still)
 	change_state(state.normal_walk)
 

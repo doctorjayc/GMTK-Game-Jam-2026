@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://b8wmfj2pomyp3"]
+
+[ext_resource type="Script" uid="uid://bxb0rrwx6u21n" path="res://scripts/titlescreen.gd" id="1_iv6qb"]
+[ext_resource type="FontFile" uid="uid://se0fi8aq7gwt" path="res://assets/Ithaca-LVB75.ttf" id="2_8oiaj"]
+[ext_resource type="Texture2D" uid="uid://cb4yrf8h37gh4" path="res://assets/snitlescreenregular.png" id="3_q6i31"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ty00"]
+texture = ExtResource("3_q6i31")
+expand_margin_left = 24.0
+expand_margin_right = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jj3l"]
+bg_color = Color(0.56078434, 0.3372549, 0.23137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.22352941, 0.19215687, 1)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tt55a"]
+bg_color = Color(0.31, 0.18501835, 0.1271, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.23, 0.12833999, 0.110400006, 1)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7v6v"]
+bg_color = Color(0.48, 0.28648, 0.19680001, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.34, 0.18971999, 0.1632, 1)
+shadow_size = 2
+
+[node name="Control" type="Control" unique_id=1903522984]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iv6qb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=86037308]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_right = 99.0
+offset_bottom = 136.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=717014462]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer" unique_id=405835350]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_8oiaj")
+theme_override_font_sizes/font_size = 32
+text = "Down for the Count"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=170943331]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7ty00")
+
+[node name="StartButton" type="Button" parent="." unique_id=502230176]
+z_index = 1
+layout_mode = 0
+offset_left = 111.0
+offset_top = 102.0
+offset_right = 189.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0.93333334, 0.7647059, 0.6039216, 1)
+theme_override_fonts/font = ExtResource("2_8oiaj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3jj3l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tt55a")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t7v6v")
+text = "Start"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
