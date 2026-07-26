@@ -15,7 +15,7 @@ var tween
 var love_tween
 var current_option = "a"
 var current_love = 0
-var love_change_percent = 25
+var love_change_percent = 12.5
 var portrait_a = "res://assets/portraits/snailneutral.png"
 var portrait_b = "res://assets/portraits/snailneutral.png"
 var is_ready = true

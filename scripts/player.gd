@@ -38,10 +38,12 @@ var shell_instance: Node
 var actual_speed = 50
 @export var timer_time_left:float = 20
 @onready var sprite = $AnimatedSprite2D
+@onready var jumpsfx = $jump_audio
 var jumpable:bool
 # Loads shell
 # IMPORTANT: If the shell path is changed this needs to be updated
 @onready var shell_object = preload("res://scenes/shell.tscn")
+
 var bouncing:bool = false
 func _ready() -> void:
 	pass
@@ -192,7 +194,7 @@ func squash_stretch(from_scale:Vector2, duration:float = squash_duration):
 func change_height_state(height_state_change):
 	match height_state_change:
 		height_state.jump:
-			
+			jumpsfx.play()
 			flyable = true
 			current_height_state = height_state.jump
 			velocity.y = JUMP_VELOCITY
@@ -236,7 +238,6 @@ func add_screen_shake(amount:float):
 
 	
 func die():
-	
 	var level =  get_tree().get_first_node_in_group('level')
 	global_position = level.current_check_point
 	if shell_instance!= null:

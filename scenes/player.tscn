@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b8kj3k8yuqmym" path="res://scripts/camera_2d.gd" id="4_dqkch"]
 [ext_resource type="Shader" uid="uid://nfnbat7h3m84" path="res://scenes/vignette2.gdshader" id="6_tuyoq"]
 [ext_resource type="Material" uid="uid://vgcpqivsijrm" path="res://scripts/fireflies.tres" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://bk453wj06s42e" path="res://sfx/snail jump.wav" id="8_y4r1p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_qlg0r")
@@ -67,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jej6c")
 }],
-"loop": 1,
+"loop": true,
 "name": &"fly",
 "speed": 5.0
 }, {
@@ -90,7 +91,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -98,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ur7pv")
 }],
-"loop": 1,
+"loop": true,
 "name": &"no_shell",
 "speed": 5.0
 }]
@@ -186,6 +187,10 @@ texture = SubResource("GradientTexture2D_q1b21")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1551483135]
 amount = 8000
 process_material = ExtResource("7_fjrip")
+
+[node name="jump_audio" type="AudioStreamPlayer2D" parent="." unique_id=339760905]
+stream = ExtResource("8_y4r1p")
+volume_db = -12.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

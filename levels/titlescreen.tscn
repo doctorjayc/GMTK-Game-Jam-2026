@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bxb0rrwx6u21n" path="res://scripts/titlescreen.gd" id="1_iv6qb"]
 [ext_resource type="FontFile" uid="uid://se0fi8aq7gwt" path="res://assets/Ithaca-LVB75.ttf" id="2_8oiaj"]
 [ext_resource type="Texture2D" uid="uid://cb4yrf8h37gh4" path="res://assets/snitlescreenregular.png" id="3_q6i31"]
+[ext_resource type="AudioStream" uid="uid://b5d0qkqcgvfjs" path="res://sfx/menu very important to make sure it has a smooth transition into the main music.wav" id="4_8oiaj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ty00"]
 texture = ExtResource("3_q6i31")
@@ -91,5 +92,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_3jj3l")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tt55a")
 theme_override_styles/hover = SubResource("StyleBoxFlat_t7v6v")
 text = "Start"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=220286615]
+stream = ExtResource("4_8oiaj")
+volume_db = -12.0
+autoplay = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
