@@ -48,11 +48,14 @@ func _physics_process(delta: float) -> void:
 		last_dir = dir
 		#dont know why bounce doesent work ytet
 	#if get_slide_collision(0):
-		#if get_slide_collision(0).get_collider() in get_tree().get_nodes_in_group('bounce'):
+		#if get_slide_collision(0).get_collider() in get_tree().get_nodes_in_group('bounce') and bouncing:
 			#
 			#velocity = velocity.bounce(get_slide_collision(0).get_normal()) * 100
 			#print('BOUNCE')
-			
+			#var timer = get_tree().create_timer(3)
+			#await  timer.timeout
+			#bouncing = false
+			#
 	#if bouncing :
 		#return
 	
@@ -76,7 +79,7 @@ func check_spring_bounce():
 		if collider.is_in_group("bounce"):
 			velocity.y = spring_velocity
 			change_height_state(height_state.fall)
-
+			
 func check_conveyor():
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()

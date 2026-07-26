@@ -1,17 +1,16 @@
 [gd_scene format=4 uid="uid://c8k0peyv4fyxf"]
 
-[ext_resource type="Script" uid="uid://phftn8n06131" path="res://scripts/level.gd" id="1_ukwr8"]
-[ext_resource type="PackedScene" uid="uid://c28lnguu1uh8" path="res://scenes/player.tscn" id="2_pb8y7"]
-[ext_resource type="Texture2D" uid="uid://dqciwk07tsuy0" path="res://assets/snailset1.3.png" id="3_hy0rb"]
-[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://scenes/lever.tscn" id="4_mxp4k"]
-[ext_resource type="PackedScene" uid="uid://bokgnxv67gdia" path="res://scenes/node_2d.tscn" id="5_d7v53"]
-[ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://scenes/door.tscn" id="6_0qmeg"]
-[ext_resource type="PackedScene" uid="uid://6v6oi1jt6t6q" path="res://scenes/spawn_pos.tscn" id="7_ta7ci"]
-[ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="8_lh335"]
-[ext_resource type="PackedScene" uid="uid://dl365eeg45y31" path="res://scenes/bounce.tscn" id="9_u6cys"]
-[ext_resource type="PackedScene" uid="uid://ba704mo7nurh8" path="res://scenes/spikes.tscn" id="10_368ro"]
-[ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="11_hy0rb"]
-[ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="12_mxp4k"]
+[ext_resource type="Script" uid="uid://phftn8n06131" path="res://scripts/level.gd" id="1_8c41q"]
+[ext_resource type="PackedScene" uid="uid://c28lnguu1uh8" path="res://scenes/player.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="3_w8frs"]
+[ext_resource type="Texture2D" uid="uid://dqciwk07tsuy0" path="res://assets/snailset1.3.png" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://dts5mo0d43qki" path="res://scenes/lever.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://bokgnxv67gdia" path="res://scenes/node_2d.tscn" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://cu0bnedoscntm" path="res://scenes/door.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://6v6oi1jt6t6q" path="res://scenes/spawn_pos.tscn" id="9_olg7q"]
+[ext_resource type="Texture2D" uid="uid://bdethlnhucwu3" path="res://assets/snailset1.4.webp" id="10_olg7q"]
+[ext_resource type="PackedScene" uid="uid://dl365eeg45y31" path="res://bounce.tscn" id="11_t1rx8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgho"]
 size = Vector2(518, 136)
@@ -388,8 +387,8 @@ tile_set = SubResource("TileSet_8iemx")
 
 [node name="Bounce" parent="." unique_id=970003132 instance=ExtResource("9_u6cys")]
 
-[node name="spikes" parent="." unique_id=51141482 instance=ExtResource("10_368ro")]
-position = Vector2(79, -28)
+[node name="Bounce2" parent="." unique_id=1657040424 instance=ExtResource("11_t1rx8")]
+position = Vector2(167, -19)
 
 [node name="interactable" parent="." unique_id=780565488 node_paths=PackedStringArray("canvas") instance=ExtResource("11_hy0rb")]
 position = Vector2(264, -16)
