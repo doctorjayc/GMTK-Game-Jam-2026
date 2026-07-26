@@ -41,7 +41,12 @@ func conveyer_belt():
 
 		else:
 			if _set_grid:
-				i.gravity = 6
+				if i is CharacterBody2D:
+					i.gravity = 6
+				elif i is RigidBody2D:
+					i.gravity_scale = 0.4
+					
+				
 				_set_grid = false
 				
 				

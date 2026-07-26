@@ -67,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jej6c")
 }],
-"loop": 1,
+"loop": true,
 "name": &"fly",
 "speed": 5.0
 }, {
@@ -90,7 +90,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -98,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ur7pv")
 }],
-"loop": 1,
+"loop": true,
 "name": &"no_shell",
 "speed": 5.0
 }]
@@ -127,6 +127,7 @@ fill_to = Vector2(0.8774929, 0.16524217)
 
 [node name="Player" type="CharacterBody2D" unique_id=813911275 groups=["player"]]
 collision_layer = 9
+collision_mask = 257
 script = ExtResource("1_4flbx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1912716383]

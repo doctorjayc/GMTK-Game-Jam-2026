@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bv2i4ax75ggk4" path="res://scenes/interactable.tscn" id="3_ldao0"]
 [ext_resource type="PackedScene" uid="uid://begci8e8ilt50" path="res://scenes/text_canvas.tscn" id="4_55n5f"]
 [ext_resource type="PackedScene" uid="uid://b8guxfeh11hau" path="res://scenes/Current_scheck_point.tscn" id="6_yb8kn"]
+[ext_resource type="PackedScene" uid="uid://ba704mo7nurh8" path="res://scenes/spikes.tscn" id="7_43k3a"]
+[ext_resource type="PackedScene" uid="uid://dkcnn7t5804o0" path="res://bounce.tscn" id="8_ttu8v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0vhbo"]
 texture = ExtResource("1_ilwad")
@@ -467,7 +469,15 @@ canvas = NodePath("../TextCanvas")
 [node name="TextCanvas" parent="." unique_id=2023312750 instance=ExtResource("4_55n5f")]
 
 [node name="Conveyer" type="TileMapLayer" parent="." unique_id=572230279]
+z_index = -2
 tile_map_data = PackedByteArray("AAAEAAAAAAAAAAkAAAAEAP//AAAAAAkAAAAEAP7/AAAAAAoAAAAFAP7/AAAAAAoAAAAGAP7/AAAAAAoAAAAHAP7/AAAAAAoAAAA=")
 tile_set = SubResource("TileSet_43k3a")
 
 [node name="Check_point" parent="." unique_id=1460864061 instance=ExtResource("6_yb8kn")]
+
+[node name="spikes" parent="." unique_id=51141482 instance=ExtResource("7_43k3a")]
+position = Vector2(-46, 5)
+
+[node name="Bounce" parent="." unique_id=970003132 instance=ExtResource("8_ttu8v")]
+position = Vector2(-24, 14)
+script = null
